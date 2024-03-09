@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Handle = styled.div`
   position: absolute;
@@ -82,18 +83,23 @@ const ToggleText = styled.p`
   display: block;
 `;
 
-const Bank = () => {
+const Bank = ({ setBankText }) => {
   return (
     <>
       <ToggleText>Bank</ToggleText>
       <ToggleBorder>
-        <input id="two" type="checkbox" />
+        <input id="two" type="checkbox" onChange={setBankText} />
         <label htmlFor="two">
           <Handle></Handle>
         </label>
       </ToggleBorder>
     </>
   );
+};
+
+Bank.propTypes = {
+  // bankToggleStatus: PropTypes.bool.isRequired,
+  setBankText: PropTypes.func.isRequired,
 };
 
 export default Bank;

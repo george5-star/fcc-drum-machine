@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const VolumeStyles = styled.svg``;
+const VolumeStyles = styled.svg`
+  enable-background: new 0 0 25 25;
+  width: 25px;
+  height: 25px;
+`;
+
 const Slider = styled.li`
   // slider
   --slider-width: 100%;
@@ -64,20 +70,21 @@ const Slider = styled.li`
   }
 `;
 
-const Volume = () => {
+const Volume = ({ handleVolume, status }) => {
   return (
     <Slider>
-      <input type="range" className="level" />
-      {/* <svg
+      {status ? (
+        <input type="range" className="level" onChange={handleVolume} />
+      ) : (
+        <input type="range" className="level" disabled />
+      )}
+      <VolumeStyles
         className="volume"
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
-        width="512"
-        height="512"
         x="0"
         y="0"
         viewBox="0 0 24 24"
-        style="enable-background:new 0 0 512 512"
         xmlSpace="preserve"
       >
         <g>
@@ -92,9 +99,14 @@ const Volume = () => {
             data-original="#000000"
           ></path>
         </g>
-      </svg> */}
+      </VolumeStyles>
     </Slider>
   );
+};
+
+Volume.propTypes = {
+  status: PropTypes.bool.isRequired,
+  handleVolume: PropTypes.func.isRequired,
 };
 
 export default Volume;

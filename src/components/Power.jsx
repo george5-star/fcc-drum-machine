@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Handle = styled.div`
   position: absolute;
@@ -94,7 +95,7 @@ const Power = (props) => {
           id="one"
           type="checkbox"
           onChange={props.onToggle}
-          checked={props.powerStatus}
+          checked={props.power}
         />
         <label htmlFor="one">
           <Handle></Handle>
@@ -102,6 +103,11 @@ const Power = (props) => {
       </ToggleBorder>
     </>
   );
+};
+
+Power.propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  power: PropTypes.bool.isRequired,
 };
 
 export default Power;

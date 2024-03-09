@@ -1,5 +1,17 @@
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
+// import { forwardRef } from "react";
 import styled from "styled-components";
+
+import qPath from "../assets/sounds/Heater-1.mp3";
+import wPath from "../assets/sounds/Heater-2.mp3";
+import ePath from "../assets/sounds/Heater-3.mp3";
+import aPath from "../assets/sounds/Heater-4_1.mp3";
+import sPath from "../assets/sounds/Heater-6.mp3";
+import dPath from "../assets/sounds/Dsc_Oh.mp3";
+import zPath from "../assets/sounds/Kick_n_Hat.mp3";
+import xPath from "../assets/sounds/RP4_KICK_1.mp3";
+import cPath from "../assets/sounds/Cev_H2.mp3";
 
 const Shadow = styled.span`
   position: absolute;
@@ -37,7 +49,7 @@ const Front = styled.span`
   height: 100%;
   display: flex;
   justify-content: center;
-  aign-items: center;
+  align-items: center;
   border-radius: 8px;
   background: hsl(248, 53%, 58%);
   padding: 16px 32px;
@@ -97,19 +109,40 @@ const Pushable = styled.button`
   }
 `;
 
-const DrumPad = ({ pad }) => {
+const soundMap = {
+  "Q": qPath,
+  "W": wPath,
+  "E": ePath,
+  "A": aPath,
+  "S": sPath,
+  "D": dPath,
+  "Z": zPath,
+  "X": xPath,
+  "C": cPath,
+};
+
+const DrumPad = forwardRef(function Drumpad({ pad, triggerClicked, id }, ref) {
   return (
-    <Pushable className="drum-pad" id={pad}>
-      <Shadow></Shadow>
+    <Pushable className="drum-pad" id={pad} onClick={triggerClicked}>
+      <Shadow className="shadow"></Shadow>
       <Edge></Edge>
-      <Front>{pad}</Front>
-      <audio src="" className="clip" id={pad}></audio>
+      <Front className="front" id={id}>
+        {pad}
+      </Front>
+      <audio
+        src={`${soundMap[pad]}`}
+        className="clip"
+        id={pad}
+        ref={ref}
+      ></audio>
     </Pushable>
   );
-};
+});
 
 DrumPad.propTypes = {
   pad: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  triggerClicked: PropTypes.func.isRequired,
 };
 
 export default DrumPad;

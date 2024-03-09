@@ -17,3 +17,14 @@ body {
   width: 100%;
   max-width: 600px;
 }
+
+
+.drum-pad.active .front {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.drum-pad.active .shadow {
+  transform: translateY(2px);
+  transition: transform 34ms;
+}
