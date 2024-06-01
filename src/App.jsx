@@ -30,6 +30,7 @@ const AppContainer = styled.div`
     }
   }
 `;
+
 const DrumPadContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
@@ -45,7 +46,7 @@ const ControlsContainer = styled.div`
 `;
 
 const App = () => {
-  const [powerStatus, setPowerStatus] = useState(true);
+  const [powerStatus, setPowerStatus] = useState(false);
   const keys = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
   const [padText, setPadText] = useState("");
   const audiosRef = useRef(null);
